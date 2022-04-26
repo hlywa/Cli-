@@ -1,18 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Audio;
 
 
-public class AudioSettingsManager : MonoBehaviour
+public class AudioSettingsManager : Singleton<AudioSettingsManager>
 {
     [SerializeField] Slider _masterSlider;
     [SerializeField] Slider _musicSlider;
     [SerializeField] Slider _sfxSlider;
-
     [SerializeField] AudioMixer _audioMixer;
-
+    [SerializeField] private AudioSource _sfxAudioSource;
+    [SerializeField] private AudioSource _musicAudioSource;
     private void Start()
     {
         _masterSlider.value = 0.5f;
@@ -20,6 +18,12 @@ public class AudioSettingsManager : MonoBehaviour
         _sfxSlider.value = 0.5f;
     }
 
+    public void _playSFX(AudioClip clipToPlay)
+    {
+        _sfxAudioSource.clip = clipToPlay;
+        _sfxAudioSource.Play();
+        
+    }
     #region Slider methods
     public void SetMasterVol(float sliderVal)
     {

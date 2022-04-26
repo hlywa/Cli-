@@ -351,7 +351,10 @@
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEditor.UI.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEngine.UI.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/VSSettingsProvider.ref.dll"
-"Assets/Scripts/Mouse/FollowMouse.cs"
+"Assets/Scripts/Mouse/MouseManager.cs"
+"Assets/Scripts/Objects/JournalManager.cs"
+"Assets/Scripts/Objects/ObjectTrigger.cs"
+"Assets/Scripts/Singleton.cs"
 "Assets/Scripts/Sound/AudioLevels.cs"
 "Assets/Scripts/Sound/AudioSettingsManager.cs"
 -langversion:8.0
