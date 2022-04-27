@@ -42,13 +42,10 @@ public class JournalManager : MonoBehaviour
         _currentGen = GenerationManager.Instance.ReturnGeneration();
         GameObject tempObj = genObjects[_currentGen];
         GameObject tempseed = genObjSeed[_currentGen];
-        _numbofEntries = numberofEntries;
-        if(numberofEntries == 0)
-        {
         
-        }
-
-        if (numberofEntries >= 1)
+        _numbofEntries = numberofEntries;
+        
+        if (numberofEntries == 1)
         {
             foreach (Image childImages in tempObj.transform.GetComponentsInChildren<Image>())
             {
@@ -56,8 +53,13 @@ public class JournalManager : MonoBehaviour
             }
         }
 
-        if (numberofEntries >= 2)
+        if (numberofEntries == 2)
         {
+            foreach (Image childImages in tempObj.transform.GetComponentsInChildren<Image>())
+            {
+                StartCoroutine(c_waitforAnimation(childImages.material, true));
+            }
+            
             foreach (Image tempseeds in tempseed.transform.GetComponentsInChildren<Image>())
             {
                 StartCoroutine(c_waitforAnimation(tempseeds.material, true));
@@ -77,21 +79,21 @@ public class JournalManager : MonoBehaviour
         GameObject tempObj = genObjects[_currentGen];
         GameObject tempseed = genObjSeed[_currentGen];
         
-        
-        if(_numbofEntries == 0)
-        {
-        
-        }
-
-        if (_numbofEntries >= 1)
+        if (_numbofEntries == 1)
         {
             foreach (Image childImages in tempObj.transform.GetComponentsInChildren<Image>())
             {
                 StartCoroutine(c_waitforAnimation(childImages.material, false));
             }
         }
-        if (_numbofEntries >= 2)
+        if (_numbofEntries == 2)
         {
+            
+            foreach (Image childImages in tempObj.transform.GetComponentsInChildren<Image>())
+            {
+                StartCoroutine(c_waitforAnimation(childImages.material, true));
+            }
+            
             foreach (Image tempseeds in tempseed.transform.GetComponentsInChildren<Image>())
             {
                 StartCoroutine(c_waitforAnimation(tempseeds.material, false));
