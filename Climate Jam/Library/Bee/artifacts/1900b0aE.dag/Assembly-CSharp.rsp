@@ -352,6 +352,7 @@
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEngine.UI.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/VSSettingsProvider.ref.dll"
 "Assets/Scripts/Mouse/MouseManager.cs"
+"Assets/Scripts/Objects/GenerationManager.cs"
 "Assets/Scripts/Objects/JournalManager.cs"
 "Assets/Scripts/Objects/ObjectTrigger.cs"
 "Assets/Scripts/Singleton.cs"

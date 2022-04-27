@@ -8,55 +8,77 @@ public class JournalManager : MonoBehaviour
 {
     [SerializeField] private float _transitionSpeed;
     [SerializeField] private GameObject _journal;
-    [SerializeField] private GameObject _gen1UI;
-    [SerializeField] private GameObject _gen2UI;
-    [SerializeField] private GameObject _gen3UI;
+    [SerializeField] private List<GameObject> genObjects;
     private static readonly int Power = Shader.PropertyToID("_Power");
     private Animator _thisAnimator;
+    private static readonly int Disappear = Animator.StringToHash("Disappear");
+    private int _currentGen;
     private void Start()
     {
-        _thisAnimator = GetComponent<Animator>();
         
-        foreach (Image childImages in _gen1UI.transform.GetComponentsInChildren<Image>())
+        _thisAnimator = GetComponent<Animator>();
+
+        foreach (GameObject gmObj in genObjects)
         {
-            StartCoroutine(InkBlotTransition(childImages.material, false));
+            foreach (Image childImages in gmObj.transform.GetComponentsInChildren<Image>())
+            {
+                StartCoroutine(c_InkBlotTransition(childImages.material, false));
+            }
         }
-        foreach (Image childImages in _gen2UI.transform.GetComponentsInChildren<Image>())
-        {
-            StartCoroutine(InkBlotTransition(childImages.material, false));
-        }
-        foreach (Image childImages in _gen3UI.transform.GetComponentsInChildren<Image>())
-        {
-            StartCoroutine(InkBlotTransition(childImages.material, false));
-        }
+        
+        _journal.SetActive(false);
     }
 
-    public void OpenJournal(int generation)
+    public void Update()
+    {
+        _currentGen = GenerationManager.Instance.ReturnGeneration();
+    }
+
+    public void OpenJournal()
     {
         _journal.SetActive(true);
-        GameObject currentGen = _gen1UI;
-        switch (generation)
-        {
-           case 1:
-               currentGen = _gen1UI;
-               break;
-           case 2:
-               
-               currentGen = _gen2UI;
-               break;
-           case 3:
-               currentGen = _gen3UI;
-               break;
-        }
+        _currentGen = GenerationManager.Instance.ReturnGeneration();
+        GameObject tempObj = genObjects[_currentGen];
 
-        foreach (Image childImages in currentGen.transform.GetComponentsInChildren<Image>())
+        foreach (Image childImages in tempObj.transform.GetComponentsInChildren<Image>())
         {
-            StartCoroutine(InkBlotTransition(childImages.material, true));
+            StartCoroutine(c_waitforAnimation(childImages.material,true));
         }
+        
+        GenerationManager.Instance.toggleBtnsOn(true);
     }
 
-    public IEnumerator InkBlotTransition(Material thisMat, bool isfadingIn)
+    public void CloseJournal()
     {
+        StartCoroutine(c_closeJournal());
+    }
+
+    private IEnumerator c_closeJournal()
+    {
+        GameObject tempObj = genObjects[_currentGen];
+        
+        foreach (Image childImages in tempObj.transform.GetComponentsInChildren<Image>())
+        {
+            StartCoroutine(c_waitforAnimation(childImages.material,false));
+        }
+        
+        yield return new WaitForSeconds(0.5f);
+        _journal.GetComponent<Animator>().SetTrigger(Disappear);
+        yield return new WaitForSeconds(1.5f);
+        GenerationManager.Instance.toggleBtnsOn(false);
+        _journal.SetActive(false);
+    }
+    
+    private IEnumerator c_waitforAnimation(Material mat, bool isfadingin)
+    {
+        yield return new WaitForSeconds(1.5f);
+        StartCoroutine(c_InkBlotTransition(mat, isfadingin));
+
+    }
+
+    private IEnumerator c_InkBlotTransition(Material thisMat, bool isfadingIn)
+    {
+
         if (isfadingIn)
         {
             while (thisMat.GetFloat(Power) < 1.05f)
@@ -78,10 +100,5 @@ public class JournalManager : MonoBehaviour
         }
 
 
-    }
-
-    void Update()
-    {
-        
     }
 }
