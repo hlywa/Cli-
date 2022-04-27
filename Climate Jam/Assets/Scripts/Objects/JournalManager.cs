@@ -9,10 +9,12 @@ public class JournalManager : MonoBehaviour
     [SerializeField] private float _transitionSpeed;
     [SerializeField] private GameObject _journal;
     [SerializeField] private List<GameObject> genObjects;
+    [SerializeField] private List<GameObject> genObjSeed;
     private static readonly int Power = Shader.PropertyToID("_Power");
     private Animator _thisAnimator;
     private static readonly int Disappear = Animator.StringToHash("Disappear");
     private int _currentGen;
+    private int _numbofEntries;
     private void Start()
     {
         
@@ -34,17 +36,34 @@ public class JournalManager : MonoBehaviour
         _currentGen = GenerationManager.Instance.ReturnGeneration();
     }
 
-    public void OpenJournal()
+    public void OpenJournal(int numberofEntries)
     {
         _journal.SetActive(true);
         _currentGen = GenerationManager.Instance.ReturnGeneration();
         GameObject tempObj = genObjects[_currentGen];
-
-        foreach (Image childImages in tempObj.transform.GetComponentsInChildren<Image>())
+        GameObject tempseed = genObjSeed[_currentGen];
+        _numbofEntries = numberofEntries;
+        if(numberofEntries == 0)
         {
-            StartCoroutine(c_waitforAnimation(childImages.material,true));
-        }
         
+        }
+
+        if (numberofEntries >= 1)
+        {
+            foreach (Image childImages in tempObj.transform.GetComponentsInChildren<Image>())
+            {
+                StartCoroutine(c_waitforAnimation(childImages.material, true));
+            }
+        }
+
+        if (numberofEntries >= 2)
+        {
+            foreach (Image tempseeds in tempseed.transform.GetComponentsInChildren<Image>())
+            {
+                StartCoroutine(c_waitforAnimation(tempseeds.material, true));
+            }
+        }
+
         GenerationManager.Instance.toggleBtnsOn(true);
     }
 
@@ -56,12 +75,28 @@ public class JournalManager : MonoBehaviour
     private IEnumerator c_closeJournal()
     {
         GameObject tempObj = genObjects[_currentGen];
+        GameObject tempseed = genObjSeed[_currentGen];
         
-        foreach (Image childImages in tempObj.transform.GetComponentsInChildren<Image>())
+        
+        if(_numbofEntries == 0)
         {
-            StartCoroutine(c_waitforAnimation(childImages.material,false));
-        }
         
+        }
+
+        if (_numbofEntries >= 1)
+        {
+            foreach (Image childImages in tempObj.transform.GetComponentsInChildren<Image>())
+            {
+                StartCoroutine(c_waitforAnimation(childImages.material, false));
+            }
+        }
+        if (_numbofEntries >= 2)
+        {
+            foreach (Image tempseeds in tempseed.transform.GetComponentsInChildren<Image>())
+            {
+                StartCoroutine(c_waitforAnimation(tempseeds.material, false));
+            }
+        }
         yield return new WaitForSeconds(0.5f);
         _journal.GetComponent<Animator>().SetTrigger(Disappear);
         yield return new WaitForSeconds(1.5f);
@@ -78,7 +113,6 @@ public class JournalManager : MonoBehaviour
 
     private IEnumerator c_InkBlotTransition(Material thisMat, bool isfadingIn)
     {
-
         if (isfadingIn)
         {
             while (thisMat.GetFloat(Power) < 1.05f)
