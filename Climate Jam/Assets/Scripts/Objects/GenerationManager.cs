@@ -22,14 +22,55 @@ public class GenerationManager : Singleton<GenerationManager>
     private static readonly int ExitHouse = Animator.StringToHash("exitHouse");
     private bool _isInsideHouse;
 
+    [SerializeField] private int _numOfTimesSuceeded;
+    [SerializeField] private List<bool> _didPlayerSucceed;
+    [SerializeField] private List<GameObject> seeds;
+    [SerializeField]  private List<GameObject> trash;
+    private int n;
+
     private void Start()
     {
+        n = 0;
         _houseAnim = _house.GetComponent<Animator>();
+        _isInsideHouse = false;
+    }
+
+    public void hasPlayerSuceeded(bool yesSuceeded)
+    {
+        _didPlayerSucceed[n] = yesSuceeded;
+        increaseGeneration();
+        if (yesSuceeded)
+        {
+            seeds[n].SetActive(true);
+            _numOfTimesSuceeded++;
+        }
+        else
+        {
+            trash[n].SetActive(true);
+        }
+
+        n++;
+        JournalManager.Instance.NextGeneration();
+    }
+
+    private void Update()
+    {
+        if (_isInsideHouse)
+        {
+            _enterHouseBtn.gameObject.SetActive(false);
+            _exitHouseBtn.gameObject.SetActive(true);
+        }
+        else
+        {
+            _enterHouseBtn.gameObject.SetActive(true);
+            _exitHouseBtn.gameObject.SetActive(false);
+        }
     }
 
     public void increaseGeneration()
     {
         _currentGeneration += 1;
+        MouseManager.Instance.currentFlowchart = MouseManager.Instance.FlowchartsInGame[_currentGeneration];
     }
 
     public int ReturnGeneration()
@@ -68,8 +109,6 @@ public class GenerationManager : Singleton<GenerationManager>
     {
         _isInsideHouse = true;
         _houseAnim.SetTrigger(EnterHouse);
-        _enterHouseBtn.gameObject.SetActive(false);
-        _exitHouseBtn.gameObject.SetActive(true);
         for (int i = 0; i < _objectsToFind.Count; i++)
         {
             _objectsToFind[i].gameObject.SetActive(i == _currentGeneration);
@@ -80,8 +119,6 @@ public class GenerationManager : Singleton<GenerationManager>
     {
         _isInsideHouse = false;
         _houseAnim.SetTrigger(ExitHouse);
-        _enterHouseBtn.gameObject.SetActive(true);
-        _exitHouseBtn.gameObject.SetActive(false);
         
         if (_canFindMush)
         {
