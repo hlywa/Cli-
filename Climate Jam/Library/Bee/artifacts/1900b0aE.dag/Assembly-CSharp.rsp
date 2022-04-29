@@ -355,6 +355,7 @@
 "Assets/Scripts/Singleton.cs"
 "Assets/Scripts/Sound/AudioLevels.cs"
 "Assets/Scripts/Sound/AudioSettingsManager.cs"
+"Assets/Scripts/Utilities/SoundTrigger.cs"
 -langversion:8.0
 
 /deterministic
