@@ -11,7 +11,7 @@ public class ObjectEntry : MonoBehaviour
 
     public void Start()
     {
-        DeleteText();
+        
     }
 
     public void showText()

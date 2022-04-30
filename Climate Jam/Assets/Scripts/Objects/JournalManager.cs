@@ -11,8 +11,10 @@ public class JournalManager : Singleton<JournalManager>
 {
     [SerializeField] private float _transitionSpeed;
     [SerializeField] private GameObject _journal;
-    [SerializeField] private List<GameObject> genObjects;
-    [SerializeField] private List<GameObject> genObjSeed;
+    [SerializeField] private List<ObjectEntry> _entries;
+    [SerializeField] private List<ObjectEntry> _entriesSeeds;
+    [SerializeField] private List<Material> _materials;
+    [SerializeField] private List<Material> _seedMaterials;
     private static readonly int Power = Shader.PropertyToID("_Power");
     private Animator _thisAnimator;
     private static readonly int Disappear = Animator.StringToHash("Disappear");
@@ -29,19 +31,13 @@ public class JournalManager : Singleton<JournalManager>
         
         _thisAnimator = GetComponent<Animator>();
 
-        foreach (GameObject gmObj in genObjects)
+        foreach (Material gmObj in _materials)
         {
-            foreach (Image childImages in gmObj.transform.GetComponentsInChildren<Image>())
-            {
-                StartCoroutine(c_InkBlotTransition(childImages.material, false));
-            }
+                StartCoroutine(c_InkBlotTransition(gmObj, false));
         }
-        foreach (GameObject gmObj in genObjSeed)
+        foreach (Material gmObj in _seedMaterials)
         {
-            foreach (Image childImages in gmObj.transform.GetComponentsInChildren<Image>())
-            {
-                StartCoroutine(c_InkBlotTransition(childImages.material, false));
-            }
+                StartCoroutine(c_InkBlotTransition(gmObj, false));
         }
         _journal.SetActive(false);
     }
@@ -55,38 +51,46 @@ public class JournalManager : Singleton<JournalManager>
     {
         _numbofEntries = numOfEntries;
     }
+
+    public IEnumerator c_openJournal()
+    {
+        yield return new WaitForSeconds(0.6f);
+        
+        if (_currentGen == 1)
+        {
+            _journal.GetComponent<Animator>().SetTrigger("g1g2");
+        }
+        else if (_currentGen == 2)
+        {
+            _journal.GetComponent<Animator>().SetTrigger("g2g3"); 
+        }
+        
+        
+        if (_numbofEntries == 0)
+        {
+            
+        }
+        else if (_numbofEntries == 1)
+        {
+            _entries[_currentGen].showText();
+            StartCoroutine(c_waitforAnimation(_materials[_currentGen], true));
+        }
+        else if (_numbofEntries == 2)
+        {
+            _entries[_currentGen].showText();
+            _entriesSeeds[_currentGen].showText();
+
+            StartCoroutine(c_waitforAnimation(_materials[_currentGen], true));
+            StartCoroutine(c_waitforAnimation(_seedMaterials[_currentGen], true));
+        }
+
+    }
+    
     public void OpenJournal()
     {
         _journal.SetActive(true);
         _currentGen = GenerationManager.Instance.ReturnGeneration();
-        GameObject tempObj = genObjects[_currentGen];
-        GameObject tempseed = genObjSeed[_currentGen];
-        
-        if (_numbofEntries == 1)
-        {
-            foreach (Image childImages in tempObj.transform.GetComponentsInChildren<Image>())
-            {
-                StartCoroutine(c_waitforAnimation(childImages.material, true));
-                
-                childImages.GetComponent<ObjectEntry>().showText();
-            }
-        }
-
-        if (_numbofEntries == 2)
-        {
-            foreach (Image childImages in tempObj.transform.GetComponentsInChildren<Image>())
-            {
-                StartCoroutine(c_waitforAnimation(childImages.material, true));
-                childImages.GetComponent<ObjectEntry>().showText();
-            }
-            
-            foreach (Image tempseeds in tempseed.transform.GetComponentsInChildren<Image>())
-            {
-                StartCoroutine(c_waitforAnimation(tempseeds.material, true));
-                tempseeds.GetComponent<ObjectEntry>().showText();
-            }
-        }
-
+        StartCoroutine(c_openJournal());
     }
 
     public void CloseJournal()
@@ -94,74 +98,41 @@ public class JournalManager : Singleton<JournalManager>
         StartCoroutine(c_closeJournal());
     }
 
-    public void NextGeneration()
+    public void NextGeneration(int _currentGene)
     {
-        GameObject tempObj = genObjects[_currentGen];
-        GameObject tempseed = genObjSeed[_currentGen];
- 
-            foreach (Image childImages in tempObj.transform.GetComponentsInChildren<Image>())
-            {
-                StartCoroutine(c_waitforAnimation(childImages.material, true));
-                childImages.GetComponent<ObjectEntry>().DeleteText();
+        StartCoroutine(c_InkBlotTransition(_materials[_currentGene - 1], false));
+        StartCoroutine(c_InkBlotTransition(_seedMaterials[_currentGene - 1], false));
+        _entries[_currentGene - 1].DeleteText();
+        _entriesSeeds[_currentGene - 1].DeleteText();
+        _journal.GetComponent<Animator>().ResetTrigger(Disappear);
 
-            }
-            
-            foreach (Image tempseeds in tempseed.transform.GetComponentsInChildren<Image>())
-            {
-                StartCoroutine(c_waitforAnimation(tempseeds.material, false));
-                tempseeds.GetComponent<ObjectEntry>().DeleteText();
-
-            }
-
-        switch (_currentGen)
-        {
-            case 0:
-                break;
-            case 1:
-                _journal.GetComponent<Animator>().SetTrigger("g1g2");
-                _journal.GetComponent<SpriteRenderer>().sprite = _g2;
-                break;
-                case 2:
-                    _journal.GetComponent<Animator>().SetTrigger("g2g3"); 
-                    _journal.GetComponent<SpriteRenderer>().sprite = _g3;
-                    break;
-
-        }
     }
     private IEnumerator c_closeJournal()
     {
-        GameObject tempObj = genObjects[_currentGen];
-        GameObject tempseed = genObjSeed[_currentGen];
         yield return new WaitForSeconds(0.5f);
         _journal.GetComponent<Animator>().SetTrigger(Disappear);
         
-        if (_numbofEntries == 1)
-        {
-            foreach (Image childImages in tempObj.transform.GetComponentsInChildren<Image>())
-            {
-                StartCoroutine(c_waitforAnimation(childImages.material, false));
-                childImages.GetComponent<ObjectEntry>().DeleteText();
-
-            }
-        }
-        if (_numbofEntries == 2)
+        if (_numbofEntries == 0)
         {
             
-            foreach (Image childImages in tempObj.transform.GetComponentsInChildren<Image>())
-            {
-                StartCoroutine(c_waitforAnimation(childImages.material, true));
-                childImages.GetComponent<ObjectEntry>().DeleteText();
-
-            }
-            
-            foreach (Image tempseeds in tempseed.transform.GetComponentsInChildren<Image>())
-            {
-                StartCoroutine(c_waitforAnimation(tempseeds.material, false));
-                tempseeds.GetComponent<ObjectEntry>().DeleteText();
-
-            }
         }
+        else if (_numbofEntries == 1)
+        {
+            _entries[_currentGen].DeleteText();
+            StartCoroutine(c_waitforAnimation(_materials[_currentGen], false));
+        }
+        else if (_numbofEntries == 2)
+        {
+            _entries[_currentGen].DeleteText();
+            _entriesSeeds[_currentGen].DeleteText();
+
+            StartCoroutine(c_waitforAnimation(_materials[_currentGen], false));
+            StartCoroutine(c_waitforAnimation(_seedMaterials[_currentGen], false));
+        }
+
         yield return new WaitForSeconds(1.5f);
+        _journal.GetComponent<Animator>().ResetTrigger(Disappear);
+
         _journal.SetActive(false);
     }
     

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Fungus;
 
 public class GenerationManager : Singleton<GenerationManager>
 {
@@ -21,7 +22,7 @@ public class GenerationManager : Singleton<GenerationManager>
     private static readonly int EnterHouse = Animator.StringToHash("enterHouse");
     private static readonly int ExitHouse = Animator.StringToHash("exitHouse");
     private bool _isInsideHouse;
-
+    private bool _firstTimeInside;
     [SerializeField] private int _numOfTimesSuceeded;
     [SerializeField] private List<bool> _didPlayerSucceed;
     [SerializeField] private List<GameObject> seeds;
@@ -39,6 +40,7 @@ public class GenerationManager : Singleton<GenerationManager>
     {
         _didPlayerSucceed[n] = yesSuceeded;
         increaseGeneration();
+        _firstTimeInside = false;
         if (yesSuceeded)
         {
             seeds[n].SetActive(true);
@@ -50,7 +52,7 @@ public class GenerationManager : Singleton<GenerationManager>
         }
 
         n++;
-        JournalManager.Instance.NextGeneration();
+        JournalManager.Instance.NextGeneration(_currentGeneration);
     }
 
     private void Update()
@@ -71,6 +73,12 @@ public class GenerationManager : Singleton<GenerationManager>
     {
         _currentGeneration += 1;
         MouseManager.Instance.currentFlowchart = MouseManager.Instance.FlowchartsInGame[_currentGeneration];
+
+        foreach (Flowchart fC in MouseManager.Instance.FlowchartsInGame)
+        {
+            fC.gameObject.SetActive(false);
+        }
+        MouseManager.Instance.currentFlowchart.gameObject.SetActive(true);
     }
 
     public int ReturnGeneration()
@@ -105,8 +113,19 @@ public class GenerationManager : Singleton<GenerationManager>
         }
     }
 
+    public void CallWhenInside()
+    {
+        MouseManager.Instance.currentFlowchart.ExecuteBlock("FirstInsideHouse");
+    }
+    
     public void InsideTheHouse()
     {
+        if (!_firstTimeInside)
+        {
+            _firstTimeInside = true;
+            CallWhenInside();
+        }
+
         _isInsideHouse = true;
         _houseAnim.SetTrigger(EnterHouse);
         for (int i = 0; i < _objectsToFind.Count; i++)
