@@ -24,7 +24,7 @@ public class GenerationManager : Singleton<GenerationManager>
     private bool _isInsideHouse;
     private bool _firstTimeInside;
     [SerializeField] private int _numOfTimesSuceeded;
-    [SerializeField] private List<bool> _didPlayerSucceed;
+    public List<bool> _didPlayerSucceed;
     [SerializeField] private List<GameObject> seeds;
     [SerializeField]  private List<GameObject> trash;
     private int n;
@@ -36,6 +36,11 @@ public class GenerationManager : Singleton<GenerationManager>
         _isInsideHouse = false;
     }
 
+    public void justCheckSuceed(bool yesSuceeded)
+    {
+        _didPlayerSucceed[n] = yesSuceeded;
+    }
+    
     public void hasPlayerSuceeded(bool yesSuceeded)
     {
         _didPlayerSucceed[n] = yesSuceeded;

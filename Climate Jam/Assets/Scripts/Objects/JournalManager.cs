@@ -11,10 +11,14 @@ public class JournalManager : Singleton<JournalManager>
 {
     [SerializeField] private float _transitionSpeed;
     [SerializeField] private GameObject _journal;
+    
     [SerializeField] private List<ObjectEntry> _entries;
-    [SerializeField] private List<ObjectEntry> _entriesSeeds;
+    [SerializeField] private List<ObjectEntry> _entriesSeeds; 
+    [SerializeField] private List<ObjectEntry> _entriesTrash;
+    
     [SerializeField] private List<Material> _materials;
     [SerializeField] private List<Material> _seedMaterials;
+   
     private static readonly int Power = Shader.PropertyToID("_Power");
     private Animator _thisAnimator;
     private static readonly int Disappear = Animator.StringToHash("Disappear");
@@ -78,10 +82,19 @@ public class JournalManager : Singleton<JournalManager>
         else if (_numbofEntries == 2)
         {
             _entries[_currentGen].showText();
-            _entriesSeeds[_currentGen].showText();
 
             StartCoroutine(c_waitforAnimation(_materials[_currentGen], true));
-            StartCoroutine(c_waitforAnimation(_seedMaterials[_currentGen], true));
+            if (GenerationManager.Instance._didPlayerSucceed[_currentGen])
+            {
+                _entriesSeeds[_currentGen].showText();
+                StartCoroutine(c_waitforAnimation(_seedMaterials[_currentGen], true));
+            }
+            else
+            {
+                _entriesTrash[_currentGen].showText();
+                
+            }
+
         }
 
     }
@@ -106,9 +119,19 @@ public class JournalManager : Singleton<JournalManager>
     private IEnumerator c_nextGen(int _currentGene)
     {
         StartCoroutine(c_InkBlotTransition(_materials[_currentGene - 1], false));
-        StartCoroutine(c_InkBlotTransition(_seedMaterials[_currentGene - 1], false));
         _entries[_currentGene - 1].DeleteText();
-        _entriesSeeds[_currentGene - 1].DeleteText();
+        
+        if (GenerationManager.Instance._didPlayerSucceed[_currentGene - 1])
+        {
+            _entriesSeeds[_currentGene - 1].DeleteText();
+            StartCoroutine(c_waitforAnimation(_seedMaterials[_currentGene - 1], false));
+        }
+        else
+        {
+            _entriesTrash[_currentGene - 1].DeleteText();
+                
+        }
+        
         _journal.GetComponent<Animator>().SetTrigger(Disappear);
 
         yield return new WaitForSeconds(1.3F);
@@ -132,10 +155,18 @@ public class JournalManager : Singleton<JournalManager>
         else if (_numbofEntries == 2)
         {
             _entries[_currentGen].DeleteText();
-            _entriesSeeds[_currentGen].DeleteText();
-
             StartCoroutine(c_waitforAnimation(_materials[_currentGen], false));
-            StartCoroutine(c_waitforAnimation(_seedMaterials[_currentGen], false));
+            
+            if (GenerationManager.Instance._didPlayerSucceed[_currentGen])
+            {
+                _entriesSeeds[_currentGen].DeleteText();
+                StartCoroutine(c_waitforAnimation(_seedMaterials[_currentGen], false));
+            }
+            else
+            {
+                _entriesTrash[_currentGen].DeleteText();
+                
+            }
         }
 
         yield return new WaitForSeconds(1.5f);
