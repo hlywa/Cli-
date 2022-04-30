@@ -54,7 +54,7 @@ public class JournalManager : Singleton<JournalManager>
 
     public IEnumerator c_openJournal()
     {
-        yield return new WaitForSeconds(0.6f);
+        yield return new WaitForSeconds(1.4f);
         
         if (_currentGen == 1)
         {
@@ -100,12 +100,20 @@ public class JournalManager : Singleton<JournalManager>
 
     public void NextGeneration(int _currentGene)
     {
+        StartCoroutine(c_nextGen(_currentGene));
+    }
+    
+    private IEnumerator c_nextGen(int _currentGene)
+    {
         StartCoroutine(c_InkBlotTransition(_materials[_currentGene - 1], false));
         StartCoroutine(c_InkBlotTransition(_seedMaterials[_currentGene - 1], false));
         _entries[_currentGene - 1].DeleteText();
         _entriesSeeds[_currentGene - 1].DeleteText();
-        _journal.GetComponent<Animator>().ResetTrigger(Disappear);
+        _journal.GetComponent<Animator>().SetTrigger(Disappear);
 
+        yield return new WaitForSeconds(1.3F);
+        _journal.SetActive(false);
+        MouseManager.Instance.currentFlowchart.ExecuteBlock("First");
     }
     private IEnumerator c_closeJournal()
     {
