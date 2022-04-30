@@ -7,23 +7,30 @@ public class AudioSettingsManager : Singleton<AudioSettingsManager>
 {
     [SerializeField] Slider _masterSlider;
     [SerializeField] Slider _musicSlider;
-    [SerializeField] Slider _sfxSlider;
     [SerializeField] AudioMixer _audioMixer;
-    [SerializeField] private AudioSource _sfxAudioSource;
+    [SerializeField] public AudioSource _sfxAudioSource;
     [SerializeField] private AudioSource _musicAudioSource;
     private void Start()
     {
-        _masterSlider.value = 0.5f;
-        _musicSlider.value = 0.5f;
-        _sfxSlider.value = 0.5f;
+       // _masterSlider.value = 0.5f;
+       // _musicSlider.value = 0.5f;
     }
 
-    public void _playSFX(AudioClip clipToPlay)
+    public void _playSFX(AudioClip clipToPlay, bool isLooped)
     {
+        _sfxAudioSource.loop = isLooped;
         _sfxAudioSource.clip = clipToPlay;
         _sfxAudioSource.Play();
         
     }
+
+    public void _stopSFX()
+    {
+        _sfxAudioSource.loop = false;
+        _sfxAudioSource.Stop();
+    }
+    
+    
     #region Slider methods
     public void SetMasterVol(float sliderVal)
     {

@@ -130,7 +130,6 @@ public class GenerationManager : Singleton<GenerationManager>
             _firstTimeInside = true;
             CallWhenInside();
         }
-
         _isInsideHouse = true;
         _houseAnim.SetTrigger(EnterHouse);
         for (int i = 0; i < _objectsToFind.Count; i++)

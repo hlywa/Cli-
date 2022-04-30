@@ -8,12 +8,6 @@ using UnityEngine;
 public class ObjectEntry : MonoBehaviour
 {
     [SerializeField]private List<GameObject> objectText;
-
-    public void Start()
-    {
-        
-    }
-
     public void showText()
     {
         foreach (GameObject text in objectText)

@@ -8,7 +8,7 @@ public class MouseManager : Singleton<MouseManager>
 {
     public List<Flowchart> FlowchartsInGame;
     public Flowchart currentFlowchart;
-    
+    public Vector3 _mousePos;
     private Vector3 mousePosition;
     [SerializeField] SpriteRenderer _cusorRenderer;
     [SerializeField] float moveSpeed = 0.1f;
@@ -17,14 +17,16 @@ public class MouseManager : Singleton<MouseManager>
 
     private void Start()
     {
+        mousePosition = Input.mousePosition;
+        _mousePos = Camera.main.ScreenToWorldPoint(mousePosition);
         currentFlowchart = FlowchartsInGame[0];
     }
 
     void Update()
     {
         mousePosition = Input.mousePosition;
-        mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
-        transform.position = Vector2.Lerp(transform.position, mousePosition, moveSpeed);
+        _mousePos = Camera.main.ScreenToWorldPoint(mousePosition);
+        transform.position = Vector2.Lerp(transform.position, _mousePos, moveSpeed);
     }
 
     public void ToggleCursor(bool isClickable)
