@@ -2,25 +2,38 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Febucci.UI;
 using TMPro;
 using UnityEngine;
 
 public class ObjectEntry : MonoBehaviour
 {
-    [SerializeField]private List<GameObject> objectText;
+    [System.Serializable]
+    public class journalText
+    {
+        public GameObject objectTextGO;
+        public string objectText;
+    }
+    
+    [SerializeField]private List<journalText> objectText;
+
     public void showText()
     {
-        foreach (GameObject text in objectText)
-        {
-            text.SetActive(true);
+        foreach (journalText text in objectText)
+        { 
+            text.objectTextGO.SetActive(true);
+            text.objectTextGO.GetComponent<TMP_Text>().text = text.objectText;
         }
+
     }
 
     public void DeleteText()
     {
-        foreach (GameObject text in objectText)
+        foreach (journalText text in objectText)
         {
-            text.SetActive(false);
+            text.objectTextGO.GetComponent<TMP_Text>().text = "";
+            text.objectTextGO.SetActive(false);
+            
         }
     }
 

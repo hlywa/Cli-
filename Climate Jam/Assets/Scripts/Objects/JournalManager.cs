@@ -18,14 +18,18 @@ public class JournalManager : Singleton<JournalManager>
     
     [SerializeField] private List<Material> _materials;
     [SerializeField] private List<Material> _seedMaterials;
-   
+    
+    [SerializeField] private AudioClip _openJournal;
+    [SerializeField] private AudioClip _closeJournal;
+    [SerializeField] private AudioClip _writingInJournal;
+
     private static readonly int Power = Shader.PropertyToID("_Power");
     private Animator _thisAnimator;
     private static readonly int Disappear = Animator.StringToHash("Disappear");
     private int _currentGen;
     private int _numbofEntries;
-
-
+    public bool InJournal;
+    
     public Sprite _g2;
     public Sprite _g3;
     
@@ -58,18 +62,24 @@ public class JournalManager : Singleton<JournalManager>
 
     public IEnumerator c_openJournal()
     {
+        AudioSettingsManager.Instance._playSFX(_openJournal, false);
+
         yield return new WaitForSeconds(1.4f);
+        
+        AudioSettingsManager.Instance._playSFX(_writingInJournal, false);
         
         if (_currentGen == 1)
         {
             _journal.GetComponent<Animator>().SetTrigger("g1g2");
+            yield return new WaitForSeconds(1.4f);
+
         }
         else if (_currentGen == 2)
         {
             _journal.GetComponent<Animator>().SetTrigger("g2g3"); 
+            yield return new WaitForSeconds(1.4f);
+
         }
-        
-        
         if (_numbofEntries == 0)
         {
             
@@ -102,12 +112,14 @@ public class JournalManager : Singleton<JournalManager>
     public void OpenJournal()
     {
         _journal.SetActive(true);
+        InJournal = true;
         _currentGen = GenerationManager.Instance.ReturnGeneration();
         StartCoroutine(c_openJournal());
     }
 
     public void CloseJournal()
     {
+        InJournal = false;
         StartCoroutine(c_closeJournal());
     }
 
@@ -118,7 +130,10 @@ public class JournalManager : Singleton<JournalManager>
     
     private IEnumerator c_nextGen(int _currentGene)
     {
-        StartCoroutine(c_InkBlotTransition(_materials[_currentGene - 1], false));
+        yield return new WaitForSeconds(3f);
+        
+        
+        StartCoroutine(c_waitforAnimation(_materials[_currentGene - 1], false));
         _entries[_currentGene - 1].DeleteText();
         
         if (GenerationManager.Instance._didPlayerSucceed[_currentGene - 1])
@@ -135,11 +150,14 @@ public class JournalManager : Singleton<JournalManager>
         _journal.GetComponent<Animator>().SetTrigger(Disappear);
 
         yield return new WaitForSeconds(1.3F);
+        changeEntryNumber(0);
         _journal.SetActive(false);
         MouseManager.Instance.currentFlowchart.ExecuteBlock("First");
     }
     private IEnumerator c_closeJournal()
     {
+        AudioSettingsManager.Instance._playSFX(_closeJournal, false);
+
         yield return new WaitForSeconds(0.5f);
         _journal.GetComponent<Animator>().SetTrigger(Disappear);
         

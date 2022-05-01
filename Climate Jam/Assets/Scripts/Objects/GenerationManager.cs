@@ -27,6 +27,10 @@ public class GenerationManager : Singleton<GenerationManager>
     public List<bool> _didPlayerSucceed;
     [SerializeField] private List<GameObject> seeds;
     [SerializeField]  private List<GameObject> trash;
+
+    [SerializeField] private AudioClip _enterHouse;
+    [SerializeField] private AudioClip _leaveHouse;
+
     private int n;
 
     private void Start()
@@ -125,6 +129,8 @@ public class GenerationManager : Singleton<GenerationManager>
     
     public void InsideTheHouse()
     {
+        AudioSettingsManager.Instance._playSFX(_enterHouse, false);
+
         if (!_firstTimeInside)
         {
             _firstTimeInside = true;
@@ -140,6 +146,8 @@ public class GenerationManager : Singleton<GenerationManager>
 
     public void OutsideTheHouse()
     {
+        AudioSettingsManager.Instance._playSFX(_leaveHouse, false);
+
         _isInsideHouse = false;
         _houseAnim.SetTrigger(ExitHouse);
         
