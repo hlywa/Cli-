@@ -1267,7 +1267,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 282.59576
     y: 65.12952
-    width: 130.00003
+    width: 86.562515
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -1477,7 +1477,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 67
     y: 70
-    width: 74.28572
+    width: 60
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -1502,18 +1502,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  scrollPos: {x: 269.33505, y: 287.78793}
+  scrollPos: {x: 313.79935, y: 516.3594}
   variablesScrollPos: {x: 0, y: 0}
   variablesExpanded: 1
   blockViewHeight: 400
-  zoom: 0.6999998
+  zoom: 0.63999987
   scrollViewRect:
     serializedVersion: 2
     x: -343
     y: -340
     width: 1114
     height: 859
-  selectedBlocks: []
+  selectedBlocks:
+  - {fileID: 294678238}
   selectedCommands: []
   variables:
   - {fileID: 294678242}
@@ -1727,7 +1728,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: -41.06638
     y: -98.84739
-    width: 177.14288
+    width: 133.43753
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -1841,7 +1842,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 152.59612
     y: 66.8601
-    width: 142.85718
+    width: 100.625015
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -1966,7 +1967,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 117.94235
     y: -147.45532
-    width: 177.14288
+    width: 130.31253
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -2149,7 +2150,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 100.35011
     y: -59.23073
-    width: 150.00003
+    width: 108.43752
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -2355,7 +2356,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 271.41953
     y: -88.74778
-    width: 171.4286
+    width: 127.18752
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -2382,7 +2383,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 51
   indentLevel: 0
-  storyText: 'Time to look for anything I can find that''s useful in this wreckage '
+  storyText: There could still be some old memories lurking in here.
   description: 
   character: {fileID: 653044050}
   portrait: {fileID: 0}
@@ -2411,7 +2412,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 271.41977
     y: -189.20227
-    width: 184.28575
+    width: 141.25003
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -2522,7 +2523,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: -178.86687
     y: -88.32765
-    width: 134.28574
+    width: 94.375015
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -7090,7 +7091,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 52
     y: 73
-    width: 132.49991
+    width: 92.49991
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -7159,7 +7160,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 239.4443
     y: 202.90692
-    width: 137.49991
+    width: 97.4999
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -7227,7 +7228,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 218
     y: 68.68421
-    width: 122.499916
+    width: 82.499916
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -7320,7 +7321,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 439.43225
     y: 246.80927
-    width: 112.49992
+    width: 72.49992
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -7528,7 +7529,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 441.31024
     y: 142.87042
-    width: 139.99991
+    width: 99.9999
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -7754,7 +7755,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 131.64389
     y: 197.71236
-    width: 92.499954
+    width: 60
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -7878,7 +7879,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 709.3075
     y: 112.55208
-    width: 144.9999
+    width: 104.99989
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -7997,7 +7998,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 717.92645
     y: 225.68198
-    width: 134.99991
+    width: 94.9999
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -23588,8 +23589,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 3.3616457, y: 44.744907}
-  m_SizeDelta: {x: 209.6, y: 150.35}
+  m_AnchoredPosition: {x: 9.83, y: -0.4}
+  m_SizeDelta: {x: 106.721, y: 93.703}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1288717630
 MonoBehaviour:
@@ -23758,7 +23759,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 37.95
+  m_fontSize: 20.3
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -31139,7 +31140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dddfdc5e0e44ca298d8f46f7f5a915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedFlowchart: {fileID: 714928453}
+  selectedFlowchart: {fileID: 1549726138}
 --- !u!4 &1500365658
 Transform:
   m_ObjectHideFlags: 1
@@ -31503,6 +31504,9 @@ GameObject:
   - component: {fileID: 1549726151}
   - component: {fileID: 1549726146}
   - component: {fileID: 1549726140}
+  - component: {fileID: 1549726163}
+  - component: {fileID: 1549726162}
+  - component: {fileID: 1549726161}
   m_Layer: 0
   m_Name: Generation 2
   m_TagString: Untagged
@@ -31581,8 +31585,8 @@ MonoBehaviour:
   nodeRect:
     serializedVersion: 2
     x: 281.43546
-    y: 250.6662
-    width: 135.22731
+    y: 252.39034
+    width: 91.03449
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -31611,7 +31615,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 215.26028
     y: 71.369865
-    width: 121.59094
+    width: 80.68967
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -31700,8 +31704,8 @@ MonoBehaviour:
   nodeRect:
     serializedVersion: 2
     x: 67
-    y: 70
-    width: 75.00001
+    y: 71.5625
+    width: 60
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -31726,11 +31730,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  scrollPos: {x: -228.59496, y: 8.190529}
+  scrollPos: {x: -103.44899, y: 164.32674}
   variablesScrollPos: {x: 0, y: 0}
   variablesExpanded: 1
   blockViewHeight: 400
-  zoom: 0.87999964
+  zoom: 0.5799999
   scrollViewRect:
     serializedVersion: 2
     x: -343
@@ -31738,9 +31742,9 @@ MonoBehaviour:
     width: 1114
     height: 859
   selectedBlocks:
-  - {fileID: 1549726132}
+  - {fileID: 1549726139}
   selectedCommands:
-  - {fileID: 1549726154}
+  - {fileID: 1549726146}
   variables:
   - {fileID: 1549726134}
   - {fileID: 1549726142}
@@ -31770,7 +31774,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 468.78137
     y: 251.3153
-    width: 177.27278
+    width: 132.41382
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -31782,6 +31786,9 @@ MonoBehaviour:
   - {fileID: 1549726153}
   - {fileID: 1549726152}
   - {fileID: 1549726151}
+  - {fileID: 1549726163}
+  - {fileID: 1549726162}
+  - {fileID: 1549726161}
   - {fileID: 1549726146}
   - {fileID: 1549726140}
   suppressAllAutoSelections: 0
@@ -31799,7 +31806,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 72
   indentLevel: 0
-  text: this will fail you
+  text: All the signs must've been there.
   description: 
   targetBlock: {fileID: 1549726141}
   hideIfVisited: 0
@@ -31826,7 +31833,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 668.7693
     y: 295.21765
-    width: 152.27277
+    width: 106.551735
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -32022,7 +32029,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 71
   indentLevel: 0
-  text: yes click this one
+  text: Maybe they had conflicting information.
   description: 
   targetBlock: {fileID: 1549726147}
   hideIfVisited: 0
@@ -32049,7 +32056,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 670.64734
     y: 191.27881
-    width: 176.13641
+    width: 132.41382
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -32230,12 +32237,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 70
   indentLevel: 0
-  storyText: 'something something next generation now:
-
-'
+  storyText: You don't look exactly like the last person that came here either.
   description: 
-  character: {fileID: 0}
-  portrait: {fileID: 0}
+  character: {fileID: 885151601}
+  portrait: {fileID: 21300000, guid: 359f15c695e65e94fb143b37cc31b53a, type: 3}
   voiceOverClip: {fileID: 0}
   showAlways: 1
   showCount: 1
@@ -32259,10 +32264,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 69
   indentLevel: 0
-  storyText: 
+  storyText: New life always comes back after a disaster.
   description: 
-  character: {fileID: 0}
-  portrait: {fileID: 0}
+  character: {fileID: 885151601}
+  portrait: {fileID: 21300000, guid: 359f15c695e65e94fb143b37cc31b53a, type: 3}
   voiceOverClip: {fileID: 0}
   showAlways: 1
   showCount: 1
@@ -32271,7 +32276,7 @@ MonoBehaviour:
   waitForClick: 1
   stopVoiceover: 1
   waitForVO: 0
-  setSayDialog: {fileID: 0}
+  setSayDialog: {fileID: 378921323}
 --- !u!114 &1549726153
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -32286,7 +32291,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 68
   indentLevel: 0
-  storyText: Aww how cute
+  storyText: Oh! You're not like the mushrooms I've heard about.
   description: 
   character: {fileID: 653044050}
   portrait: {fileID: 0}
@@ -32362,7 +32367,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 954.6964
     y: 94.87277
-    width: 130.68185
+    width: 89.310356
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -32544,6 +32549,89 @@ MonoBehaviour:
   stopVoiceover: 1
   waitForVO: 0
   setSayDialog: {fileID: 0}
+--- !u!114 &1549726161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1549726128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 75
+  indentLevel: 0
+  storyText: Do you think the family that once lived here should've known to leave
+    sooner?
+  description: 
+  character: {fileID: 885151601}
+  portrait: {fileID: 21300000, guid: 359f15c695e65e94fb143b37cc31b53a, type: 3}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
+--- !u!114 &1549726162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1549726128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 74
+  indentLevel: 0
+  storyText: 'Careful! Think that way and this place will be your future. '
+  description: 
+  character: {fileID: 885151601}
+  portrait: {fileID: 21300000, guid: 5dcdec6ea51f325468beb3f788fb894e, type: 3}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
+--- !u!114 &1549726163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1549726128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 73
+  indentLevel: 0
+  storyText: My mother came here before me... I guess we both just wanted to look
+    at the past.
+  description: 
+  character: {fileID: 653044050}
+  portrait: {fileID: 0}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
 --- !u!114 &1549726166
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -32558,7 +32646,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 38
   indentLevel: 0
-  storyText: 'Maybe there''s something to be saved here yeT!
+  storyText: 'Maybe mom didn''t find everything here yet.
 
 '
   description: 
@@ -32587,9 +32675,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeRect:
     serializedVersion: 2
-    x: 943.7371
-    y: 46.473114
-    width: 143.18185
+    x: 948.90955
+    y: 43.024837
+    width: 99.65518
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
