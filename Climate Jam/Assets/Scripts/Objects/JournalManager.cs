@@ -130,7 +130,7 @@ public class JournalManager : Singleton<JournalManager>
     
     private IEnumerator c_nextGen(int _currentGene)
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(6f);
         
         
         StartCoroutine(c_waitforAnimation(_materials[_currentGene - 1], false));

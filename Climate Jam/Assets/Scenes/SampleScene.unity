@@ -6686,7 +6686,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a36e26ce8221e644b9b1759cd0f81c5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _objectSound: {fileID: 8300000, guid: e513fc9af808b8c438338e58bc17a700, type: 3}
+  _objectSound: {fileID: 8300000, guid: c6ede2f8d4f552b49a9f36b90c0bc77b, type: 3}
   _transform: {fileID: 911422048}
   _doNotPlay: 0
 --- !u!1 &670365635
@@ -6913,7 +6913,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a36e26ce8221e644b9b1759cd0f81c5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _objectSound: {fileID: 8300000, guid: e513fc9af808b8c438338e58bc17a700, type: 3}
+  _objectSound: {fileID: 8300000, guid: c6ede2f8d4f552b49a9f36b90c0bc77b, type: 3}
   _transform: {fileID: 2058757510}
   _doNotPlay: 0
 --- !u!1 &694103908
@@ -22183,7 +22183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a36e26ce8221e644b9b1759cd0f81c5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _objectSound: {fileID: 8300000, guid: e513fc9af808b8c438338e58bc17a700, type: 3}
+  _objectSound: {fileID: 8300000, guid: c6ede2f8d4f552b49a9f36b90c0bc77b, type: 3}
   _transform: {fileID: 52344050}
   _doNotPlay: 0
 --- !u!1 &1119657995
@@ -22415,7 +22415,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 218
     y: 70
-    width: 78.750015
+    width: 118.750015
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -22509,7 +22509,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 67
     y: 70
-    width: 60
+    width: 75.00001
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -22547,10 +22547,8 @@ MonoBehaviour:
     y: -340
     width: 1114
     height: 859
-  selectedBlocks:
-  - {fileID: 1122225285}
-  selectedCommands:
-  - {fileID: 1122225318}
+  selectedBlocks: []
+  selectedCommands: []
   variables:
   - {fileID: 1122225282}
   - {fileID: 1122225291}
@@ -22694,7 +22692,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 729.04663
     y: -32.504578
-    width: 133.43753
+    width: 173.43753
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -22879,7 +22877,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 930.91254
     y: -92.54108
-    width: 130.31253
+    width: 170.31253
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -23062,7 +23060,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 929.03455
     y: 11.397766
-    width: 108.43752
+    width: 148.43753
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -23243,7 +23241,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 558.7462
     y: -31.449142
-    width: 94.375015
+    width: 134.37502
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -23357,7 +23355,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 1178.3329
     y: 149.38742
-    width: 86.562515
+    width: 126.562515
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -23557,7 +23555,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 1178.3329
     y: 149.38742
-    width: 127.18752
+    width: 167.18753
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -23614,7 +23612,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 1178.3331
     y: 48.93303
-    width: 100.625015
+    width: 140.62502
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -23654,7 +23652,7 @@ MonoBehaviour:
   setSayDialog: {fileID: 1233816303}
 --- !u!114 &1122225318
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -32772,7 +32770,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dddfdc5e0e44ca298d8f46f7f5a915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedFlowchart: {fileID: 1122225286}
+  selectedFlowchart: {fileID: 714928453}
 --- !u!4 &1500365658
 Transform:
   m_ObjectHideFlags: 1
@@ -35270,7 +35268,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectText:
   - objectTextGO: {fileID: 655973891}
-    objectText: This gorgeous ornate mirror belonged to you grandmother. she must
+    objectText: This gorgeous ornate mirror belonged to your grandmother. she must
       have dropped it looking around the house
   - objectTextGO: {fileID: 723030778}
     objectText: It reminds you that change happens with you, and there's something
@@ -37322,6 +37320,7 @@ MonoBehaviour:
   moveSpeed: 1
   _clickableCursor: {fileID: 21300000, guid: 2df6b523125eaad4da539dbc9ff46fea, type: 3}
   _normalCursor: {fileID: 21300000, guid: 61badf02a3f1a7b4e94ac26d234234fb, type: 3}
+  _mouseClickSound: {fileID: 8300000, guid: 1fea5145893ccd54aa2fc226cc18585d, type: 3}
 --- !u!1 &1728737874
 GameObject:
   m_ObjectHideFlags: 0

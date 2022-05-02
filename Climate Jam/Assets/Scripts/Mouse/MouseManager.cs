@@ -14,7 +14,7 @@ public class MouseManager : Singleton<MouseManager>
     [SerializeField] float moveSpeed = 0.1f;
     [SerializeField] private Sprite _clickableCursor;
     [SerializeField] private Sprite _normalCursor;
-
+    public AudioClip _mouseClickSound;
     private void Start()
     {
         mousePosition = Input.mousePosition;
@@ -24,6 +24,12 @@ public class MouseManager : Singleton<MouseManager>
 
     void Update()
     {
+        if (Input.GetMouseButtonDown(0))
+        {
+            AudioSettingsManager.Instance._playSFX(_mouseClickSound, false);
+        }
+        
+        
         mousePosition = Input.mousePosition;
         _mousePos = Camera.main.ScreenToWorldPoint(mousePosition);
         transform.position = Vector2.Lerp(transform.position, _mousePos, moveSpeed);
