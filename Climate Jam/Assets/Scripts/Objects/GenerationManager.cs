@@ -7,7 +7,8 @@ using Fungus;
 
 public class GenerationManager : Singleton<GenerationManager>
 {
-    [Header("UI elements")] 
+    [Header("UI elements")]
+    public GameObject _btncanvas;
     [SerializeField] private Button _enterHouseBtn;
     [SerializeField] private Button _exitHouseBtn;
     [Header("house and gen objects")]
@@ -47,6 +48,7 @@ public class GenerationManager : Singleton<GenerationManager>
     
     public void hasPlayerSuceeded(bool yesSuceeded)
     {
+        _btncanvas.SetActive(false);
         _didPlayerSucceed[n] = yesSuceeded;
         increaseGeneration();
         _firstTimeInside = false;
@@ -61,7 +63,7 @@ public class GenerationManager : Singleton<GenerationManager>
         }
 
         n++;
-        JournalManager.Instance.NextGeneration(_currentGeneration);
+        JournalManager.Instance.NextGeneration(_currentGeneration, yesSuceeded);
     }
 
     private void Update()
@@ -131,6 +133,12 @@ public class GenerationManager : Singleton<GenerationManager>
     {
         AudioSettingsManager.Instance._playSFX(_enterHouse, false);
 
+        if(JournalManager.Instance.InJournal)
+        {
+            JournalManager.Instance.CloseJournal();
+        }
+
+
         if (!_firstTimeInside)
         {
             _firstTimeInside = true;
@@ -148,6 +156,10 @@ public class GenerationManager : Singleton<GenerationManager>
     {
         AudioSettingsManager.Instance._playSFX(_leaveHouse, false);
 
+        if (JournalManager.Instance.InJournal)
+        {
+            JournalManager.Instance.CloseJournal();
+        }
         _isInsideHouse = false;
         _houseAnim.SetTrigger(ExitHouse);
         

@@ -11,7 +11,7 @@ public class JournalManager : Singleton<JournalManager>
 {
     [SerializeField] private float _transitionSpeed;
     [SerializeField] private GameObject _journal;
-    
+    [SerializeField] private GameObject _btnJournal;
     [SerializeField] private List<ObjectEntry> _entries;
     [SerializeField] private List<ObjectEntry> _entriesSeeds; 
     [SerializeField] private List<ObjectEntry> _entriesTrash;
@@ -63,21 +63,21 @@ public class JournalManager : Singleton<JournalManager>
     public IEnumerator c_openJournal()
     {
         AudioSettingsManager.Instance._playSFX(_openJournal, false);
+        _btnJournal.SetActive(true);
 
-        yield return new WaitForSeconds(1.4f);
+        yield return new WaitForSeconds(0.4f);
         
         AudioSettingsManager.Instance._playSFX(_writingInJournal, false);
-        
         if (_currentGen == 1)
         {
             _journal.GetComponent<Animator>().SetTrigger("g1g2");
-            yield return new WaitForSeconds(1.4f);
+            yield return new WaitForSeconds(1.2f);
 
         }
         else if (_currentGen == 2)
         {
             _journal.GetComponent<Animator>().SetTrigger("g2g3"); 
-            yield return new WaitForSeconds(1.4f);
+            yield return new WaitForSeconds(1.2f);
 
         }
         if (_numbofEntries == 0)
@@ -89,18 +89,21 @@ public class JournalManager : Singleton<JournalManager>
             _entries[_currentGen].showText();
             StartCoroutine(c_waitforAnimation(_materials[_currentGen], true));
         }
-        else if (_numbofEntries == 2)
+        else if (_numbofEntries >= 2)
         {
             _entries[_currentGen].showText();
-
-            StartCoroutine(c_waitforAnimation(_materials[_currentGen], true));
             if (GenerationManager.Instance._didPlayerSucceed[_currentGen])
             {
+                _entries[_currentGen].DeleteText();
                 _entriesSeeds[_currentGen].showText();
+                _btnJournal.SetActive(false);
+
                 StartCoroutine(c_waitforAnimation(_seedMaterials[_currentGen], true));
             }
             else
             {
+                _entries[_currentGen].DeleteText();
+                _entries[_currentGen].DeleteText();
                 _entriesTrash[_currentGen].showText();
                 
             }
@@ -111,6 +114,7 @@ public class JournalManager : Singleton<JournalManager>
     
     public void OpenJournal()
     {
+        _btnJournal.SetActive(true);
         _journal.SetActive(true);
         InJournal = true;
         _currentGen = GenerationManager.Instance.ReturnGeneration();
@@ -119,27 +123,24 @@ public class JournalManager : Singleton<JournalManager>
 
     public void CloseJournal()
     {
+        _btnJournal.SetActive(false);
         InJournal = false;
         StartCoroutine(c_closeJournal());
     }
 
-    public void NextGeneration(int _currentGene)
+    public void NextGeneration(int _currentGene, bool hasSuceeded)
     {
-        StartCoroutine(c_nextGen(_currentGene));
+        StartCoroutine(c_nextGen(_currentGene, hasSuceeded));
     }
     
-    private IEnumerator c_nextGen(int _currentGene)
+    private IEnumerator c_nextGen(int _currentGene, bool hasSuceeded)
     {
+        _btnJournal.SetActive(false);
+
         yield return new WaitForSeconds(6f);
-        
-        
-        StartCoroutine(c_waitforAnimation(_materials[_currentGene - 1], false));
-        _entries[_currentGene - 1].DeleteText();
-        
-        if (GenerationManager.Instance._didPlayerSucceed[_currentGene - 1])
+        if (hasSuceeded)
         {
             _entriesSeeds[_currentGene - 1].DeleteText();
-            StartCoroutine(c_waitforAnimation(_seedMaterials[_currentGene - 1], false));
         }
         else
         {
@@ -153,6 +154,9 @@ public class JournalManager : Singleton<JournalManager>
         changeEntryNumber(0);
         _journal.SetActive(false);
         MouseManager.Instance.currentFlowchart.ExecuteBlock("First");
+
+
+        GenerationManager.Instance._btncanvas.SetActive(true);
     }
     private IEnumerator c_closeJournal()
     {
@@ -200,7 +204,7 @@ public class JournalManager : Singleton<JournalManager>
 
     }
 
-    private IEnumerator c_InkBlotTransition(Material thisMat, bool isfadingIn)
+    public IEnumerator c_InkBlotTransition(Material thisMat, bool isfadingIn)
     {
         if (isfadingIn)
         {

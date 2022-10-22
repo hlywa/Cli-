@@ -9,6 +9,7 @@ public class CursorChanged : MonoBehaviour
     [SerializeField] private AudioClip _objectSound;
     [SerializeField] private Transform _transform;
     public bool _doNotPlay;
+    public AudioSource _sfxForMouse;
     public void Start()
     {
         StartCoroutine(waitBeforeStarting());
@@ -21,7 +22,7 @@ public class CursorChanged : MonoBehaviour
             StartCoroutine(waitBeforeStarting());
         }
         
-        AudioSettingsManager.Instance._sfxAudioSource.volume = 1 - (Vector3.Distance(_transform.position, MouseManager.Instance._mousePos)/100) * 2;
+        _sfxForMouse.volume = 1 - (Vector3.Distance(_transform.position, MouseManager.Instance._mousePos)/100) * 5;
     }
 
     public IEnumerator waitBeforeStarting()
@@ -35,6 +36,7 @@ public class CursorChanged : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             _doNotPlay = true;
+            _sfxForMouse.Stop();
             AudioSettingsManager.Instance._stopSFX();
         }
     }

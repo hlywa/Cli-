@@ -16,22 +16,33 @@ public class ObjectEntry : MonoBehaviour
     }
     
     [SerializeField]private List<journalText> objectText;
-
+    [SerializeField] private Material _fadeMat;
     public void showText()
     {
         foreach (journalText text in objectText)
         { 
             text.objectTextGO.SetActive(true);
-            text.objectTextGO.GetComponent<TMP_Text>().text = text.objectText;
+            if (text.objectTextGO.GetComponent<TMP_Text>())
+            {
+                text.objectTextGO.GetComponent<TMP_Text>().text = text.objectText;
+            }
         }
 
     }
 
     public void DeleteText()
     {
+        if (_fadeMat != null)
+        {
+            StartCoroutine(JournalManager.Instance.c_InkBlotTransition(_fadeMat, false));
+        }
+
         foreach (journalText text in objectText)
         {
-            text.objectTextGO.GetComponent<TMP_Text>().text = "";
+            if (text.objectTextGO.GetComponent<TMP_Text>())
+            {
+                text.objectTextGO.GetComponent<TMP_Text>().text = "";
+            }
             text.objectTextGO.SetActive(false);
             
         }

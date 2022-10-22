@@ -811,29 +811,13 @@ namespace UnityEditor.U2D.Sprites
             if (!activeDataProviderSelected || m_CurrentModule == null)
                 return;
             // Top menu bar
-
+            var moduleListWidth = 0.0f;
             // only show popup if there is more than 1 module.
             if (m_RegisteredModules.Count > 1)
             {
                 float moduleWidthPercentage = k_ModuleListWidth / minSize.x;
-                float moduleListWidth = position.width > minSize.x ? position.width * moduleWidthPercentage : k_ModuleListWidth;
+                moduleListWidth = position.width > minSize.x ? position.width * moduleWidthPercentage : k_ModuleListWidth;
                 moduleListWidth = Mathf.Min(moduleListWidth, EditorStyles.toolbarPopup.CalcSize(m_RegisteredModuleNames[m_CurrentModuleIndex]).x);
-                int module = EditorGUI.Popup(new Rect(0, 0, moduleListWidth, k_ToolbarHeight), m_CurrentModuleIndex, m_RegisteredModuleNames, EditorStyles.toolbarPopup);
-                if (module != m_CurrentModuleIndex)
-                {
-                    if (textureIsDirty)
-                    {
-                        // Have pending module edit changes. Ask user if they want to apply or revert
-                        if (EditorUtility.DisplayDialog(SpriteEditorWindowStyles.applyRevertModuleDialogTitle.text,
-                            SpriteEditorWindowStyles.applyRevertModuleDialogContent.text,
-                            SpriteEditorWindowStyles.applyButtonLabel.text, SpriteEditorWindowStyles.revertButtonLabel.text))
-                            DoApply();
-                        else
-                            DoRevert();
-                    }
-                    m_LastUsedModuleTypeName = m_RegisteredModules[module].GetType().FullName;
-                    SetupModule(module);
-                }
                 toolbarRect.x = moduleListWidth;
             }
 
@@ -882,6 +866,26 @@ namespace UnityEditor.U2D.Sprites
 
             toolbarRect.width = applyRevertDrawArea.x - toolbarRect.x;
             m_CurrentModule.DoToolbarGUI(toolbarRect);
+
+            if (m_RegisteredModules.Count > 1)
+            {
+                int module = EditorGUI.Popup(new Rect(0, 0, moduleListWidth, k_ToolbarHeight), m_CurrentModuleIndex, m_RegisteredModuleNames, EditorStyles.toolbarPopup);
+                if (module != m_CurrentModuleIndex)
+                {
+                    if (textureIsDirty)
+                    {
+                        // Have pending module edit changes. Ask user if they want to apply or revert
+                        if (EditorUtility.DisplayDialog(SpriteEditorWindowStyles.applyRevertModuleDialogTitle.text,
+                            SpriteEditorWindowStyles.applyRevertModuleDialogContent.text,
+                            SpriteEditorWindowStyles.applyButtonLabel.text, SpriteEditorWindowStyles.revertButtonLabel.text))
+                            DoApply();
+                        else
+                            DoRevert();
+                    }
+                    m_LastUsedModuleTypeName = m_RegisteredModules[module].GetType().FullName;
+                    SetupModule(module);
+                }
+            }
         }
 
         private void DoEditingDisabledMessage()
